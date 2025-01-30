@@ -1,0 +1,663 @@
+{
+    "status": {
+        "active": "Active",
+        "blocked": "Blocked",
+        "deleted": "Deleted"
+    },
+    "login": {
+        "signIn": {
+            "title": "Sign in to your account",
+            "email": "Email address",
+            "password": "Password",
+            "forgotPassword": "Forgot your password?",
+            "confirm": "Sign in"
+        },
+        "resetPassword": {
+            "title": "Reset your password",
+            "subtitle": "Enter your email and we will send you a verification code to reset the password.",
+            "email": "Email address",
+            "confirm": "Send the verification code"
+        },
+        "verifyEmail": {
+            "title": "Enter the verification code",
+            "subtitle": "Enter the code we’ve send to the {email}. If you can not find the message, check Spam folder.",
+            "code": "Verification code",
+            "confirm": "Confirm",
+            "notReceived": "Did not receive the code?",
+            "resend": "Re-send code"
+        },
+        "newPassword": {
+            "title": "Create new password",
+            "change": "Change password",
+            "oldPassword": "Current password",
+            "newPassword": "New password",
+            "repeatPassword": "Repeat new password",
+            "cancel": "Cancel",
+            "update": "Save changes",
+            "confirm": "Create new password",
+            "success": "The password was successfully changed"
+        },
+        "errors": {
+            "IS_EMAIL": "invalid email",
+            "IS_STRING": "{field} is required",
+            "IS_NOT_EMPTY": "{field} is required",
+            "INVALID_FIELD": "Invalid {field}",
+            "NO_SPACES": "Spaces are not allowed",
+            "IS_PASSWORD": "Invalid password",
+            "EMAIL_IS_TOO_LONG": "Email must be less than 75 characters",
+            "PASSWORDS_NOT_MATCH": "Passwords do not match",
+            "reset_code_is_not_valid": "Invalid reset code",
+            "invalid_email_or_password": "User not found",
+            "user_not_found": "User not found",
+            "wrong_password": "Password is incorrect"
+        }
+    },
+    "navbar": {
+        "productManagement": "Product management",
+        "categories": "Categories",
+        "products": "Products",
+        "operationalStructure": "Operational structure",
+        "countries": "Countries",
+        "stores": "Stores",
+        "deliveryZones": "Delivery zones",
+        "orderManagement": "Order management",
+        "usersManagement": "Users management",
+        "customerManagement": "Customer management",
+        "operator-management": "Operators management",
+        "reportingAndAnalytics": "Reporting and analytics",
+        "appVersionManagement": "App version management",
+        "accountSettings": "Account settings",
+        "logout": {
+            "button": "Log out",
+            "text": "Do you want to log out from the account?",
+            "cancel": "Cancel",
+            "confirm": "Log out"
+        },
+        "locale": {
+            "en": "English",
+            "es": "Spanish"
+        }
+    },
+    "panel": {
+        "customer-management": {
+            "title": "Customer management",
+            "status": "Status",
+            "country": "Country",
+            "role": "Role",
+            "active": "Active",
+            "blocked": "Blocked",
+            "fields": {
+                "id": "#",
+                "name": "Name",
+                "email": "Email",
+                "phone": "Phone",
+                "registrationDate": "Registration date",
+                "totalValue": "Total value",
+                "status": "Status",
+                "actions": "Actions"
+            }
+        },
+        "operator-management": {
+            "title": "Operators management",
+            "add": "Add new operator",
+            "status": "Status",
+            "country": "Country",
+            "role": "Role",
+            "active": "Active",
+            "blocked": "Blocked",
+            "fields": {
+                "id": "#",
+                "name": "Name",
+                "email": "Email",
+                "phone": "Phone",
+                "role": "Role",
+                "status": "Status",
+                "actions": "Actions"
+            }
+        },
+        "product-management": {
+            "title": "Product management",
+            "sync": "Synchronize",
+            "status": "Status",
+            "country": "Country",
+            "store": "Store",
+            "visibility": "Visibility",
+            "category": "Category",
+            "subCategory": "Subcategory",
+            "active": "Active",
+            "blocked": "Blocked",
+            "alerts": {
+                "timeoutError": "Synchronization service is not available",
+                "syncInProcess": "Products synchronization is in process...",
+                "syncSuccess": "Products synchronized successfully",
+                "syncError": "Products synchronized with errors"
+            },
+            "filters": {
+                "status": {
+                    "name": "Status",
+                    "options": {
+                        "all": "All",
+                        "active": "Active",
+                        "inactive": "Inactive"
+                    }
+                },
+                "visibility": {
+                    "name": "Visibility",
+                    "options": {
+                        "all": "All",
+                        "visible": "Visible",
+                        "hidden": "Hidden"
+                    }
+                },
+                "store": {
+                    "name": "Store",
+                    "options": {
+                        "all": "All"
+                    }
+                },
+                "category": {
+                    "name": "Category",
+                    "options": {
+                        "all": "All"
+                    }
+                },
+                "subCategory": {
+                    "name": "Subcategory",
+                    "options": {
+                        "all": "All"
+                    }
+                }
+            },
+            "fields": {
+                "id": "#",
+                "name": "Product name",
+                "category": "Category",
+                "visibility": "Visibility",
+                "subcategory": "Subcategory",
+                "status": "Status",
+                "actions": "Actions"
+            },
+            "form": {
+                "view": {
+                    "title": "Product details",
+                    "isVisibility": "Is visible",
+                    "ok": "OK",
+                    "modifiers": "Modifiers",
+                    "noModifiers": "No modifiers"
+                }
+            }
+        },
+        "countries": {
+            "title": "Countries",
+            "fields": {
+                "id": "Id",
+                "name": "Name",
+                "currency": "Currency",
+                "phoneCode": "Phone Code",
+                "status": "Status",
+                "actions": "Actions",
+                "inventoryId": "Identifier"
+            },
+            "filters": {
+                "status": {
+                    "name": "Status",
+                    "options": {
+                        "all": "All",
+                        "active": "Active",
+                        "inactive": "Inactive"
+                    }
+                }
+            },
+            "form": {
+                "edit": {
+                    "title": "Edit country",
+                    "generalInfo": "General info",
+                    "managers": "Country managers",
+                    "fields": {
+                        "name": "Name",
+                        "code": "Currency code",
+                        "phoneCode": "Phone code",
+                        "currency": "Currency symbol",
+                        "status": "Status",
+                        "inventoryId": "Identifier"
+                    },
+                    "options": {
+                        "status": {
+                            "all": "All",
+                            "active": "Active",
+                            "inactive": "Inactive"
+                        }
+                    },
+                    "messages": {
+                        "successfullyCreated": "The country was successfully created",
+                        "successfullyUpdated": "The country was successfully updated",
+                        "noManagersAssigned": "No country managers assigned yet",
+                        "inventoryId": "Unique identifier for the country from the Inventory System"
+                    },
+                    "errors": {
+                        "IS_NOT_EMPTY": "{field} is required",
+                        "IS_STRING": "{field} is required",
+                        "INVALID": "Invalid {field}",
+                        "INVALID_IDENTIFIER": "Identifier indicated for the created entity in the current system shall match the same Identifier from the Inventory system!",
+                        "TOO_BIG": "Value must be less than or equal to {max}"
+                    }
+                }
+            }
+        },
+        "stores": {
+            "title": "Stores",
+            "new": "Add new store",
+            "fields": {
+                "id": "#",
+                "name": "Name",
+                "inventoryId": "Identifier",
+                "country": "Country",
+                "deliveryZones": "Delivery Zones",
+                "status": "Status",
+                "actions": "Actions"
+            },
+            "filters": {
+                "status": {
+                    "name": "Status",
+                    "options": {
+                        "all": "All",
+                        "active": "Active",
+                        "inactive": "Inactive"
+                    }
+                },
+                "countryId": {
+                    "name": "Country"
+                },
+                "deliveryZoneId": {
+                    "name": "Delivery Zone"
+                }
+            },
+            "messages": {
+                "deliveryZoneInactive": "Delivery zone for the Store is inactive"
+            },
+            "isMainStore": "Main",
+            "isSecondaryStore": "Secondary"
+        },
+        "delivery-zones": {
+            "title": "Delivery zones management",
+            "new": "Add new delivery zone",
+            "filters": {
+                "status": {
+                    "name": "Status",
+                    "options": {
+                        "all": "All",
+                        "active": "Active",
+                        "inactive": "Inactive"
+                    }
+                },
+                "country": {
+                    "name": "Country"
+                },
+                "store": {
+                    "name": "Store"
+                }
+            },
+            "fields": {
+                "id": "Id",
+                "name": "Name",
+                "country": "Country",
+                "store": "Store",
+                "subzones": "Subzones",
+                "status": "Status",
+                "actions": "Actions"
+            },
+            "stores": {
+                "isMainStore": "Main",
+                "more": "more..."
+            }
+        },
+        "app-version-management": {
+            "title": "App version management",
+            "customerApp": "Relevant customer app version",
+            "operatorApp": "Relevant operator app version",
+            "android": "Android",
+            "ios": "IOS",
+            "cancel": "Cancel",
+            "submit": "Update version",
+            "customerAppAndroid": "Customer app Android version",
+            "customerAppIos": "Customer app IOS version",
+            "operatorAppAndroid": "Operator app Android version",
+            "operatorAppIos": "Operator app IOS version",
+            "errors": {
+                "IS_NOT_EMPTY": "{field} is required",
+                "IS_STRING": "{field} is required",
+                "IS_VERSION": "Invalid version"
+            },
+            "success": "Version updated successfully"
+        },
+        "account-settings": {
+            "title": "Account settings"
+        },
+        "pagination": {
+            "prev": "Previous",
+            "next": "Next"
+        },
+        "form": {
+            "customer-management": {
+                "edit": {
+                    "title": "Edit customer",
+                    "status": "Status",
+                    "role": "Role",
+                    "country": "Country",
+                    "store": "Store",
+                    "firstName": "First name",
+                    "lastName": "Last name",
+                    "email": "Email",
+                    "phone": "Phone Number",
+                    "avatar": "Avatar",
+                    "cancel": "Cancel",
+                    "submit": "Invite customer",
+                    "update": "Save changes",
+                    "change": "Change",
+                    "delete": "Delete",
+                    "active": "Active",
+                    "resetPassword": "Reset password",
+                    "blocked": "Blocked",
+                    "errors": {
+                        "IS_NOT_EMPTY": "{field} is required",
+                        "IS_STRING": "{field} is required",
+                        "IS_EMAIL": "Invalid email",
+                        "IS_PHONE": "Invalid phone number",
+                        "INVALID_FIELD": "Invalid {field}",
+                        "user_with_this_email_exists": "Email shall be unique. Please try a different email",
+                        "user_with_this_phone_exists": "Phone number shall be unique. Please try a different phone number"
+                    },
+                    "messages": {
+                        "successfullyUpdated": "The customer was successfully updated"
+                    }
+                },
+                "view": {
+                    "title": "View order history",
+                    "ok": "Ok"
+                }
+            },
+            "operator-management": {
+                "edit": "Edit operator",
+                "add": "Add new operator",
+                "status": "Status",
+                "role": "Role",
+                "country": "Country",
+                "store": "Store",
+                "firstName": "First name",
+                "lastName": "Last name",
+                "email": "Email",
+                "deliveryZone": "Delivery zone",
+                "phone": "Phone Number",
+                "avatar": "Avatar",
+                "avatarMaxSize": "Max size: 2MB",
+                "avatarAspectRatio": "1:1 ratio",
+                "cancel": "Cancel",
+                "submit": "Invite operator",
+                "update": "Save changes",
+                "change": "Change",
+                "delete": "Delete",
+                "active": "Active",
+                "resetPassword": "Reset password",
+                "blocked": "Blocked",
+                "avatarDescription": "Formats: jpg, jpeg, png. Max size: 2MB. 1:1 ratio.",
+                "success": "Settings updated successfully",
+                "errors": {
+                    "IS_NOT_EMPTY": "{field} is required",
+                    "IS_STRING": "{field} is required",
+                    "IS_EMAIL": "Invalid email",
+                    "IS_PHONE": "Invalid phone number",
+                    "INVALID_FIELD": "Invalid {field}",
+                    "user_with_this_email_exists": "Email shall be unique. Please try a different email",
+                    "user_with_this_phone_exists": "Phone number shall be unique. Please try a different phone number"
+                },
+                "messages": {
+                    "successfullyCreated": "The operator was successfully created",
+                    "successfullyUpdated": "The operator was successfully updated"
+                }
+            },
+            "delivery-zones": {
+                "edit": "Edit delivery zone",
+                "add": "Add new delivery zone",
+                "blocks": {
+                    "generalInfo": "General info",
+                    "subzones": "Subzones",
+                    "workingHours": "Working hours",
+                    "assignedStores": {
+                        "title": "Assigned Stores",
+                        "subtitle": "List of stores, included in the delivery zone. Select the Main Store. Other stores will be considered as Secondary"
+                    },
+                    "deliveryMen": "Delivery Men",
+                    "map": {
+                        "title": "Zone on the map",
+                        "subtitle": "Draw a polygon of the delivery zone on the map"
+                    }
+                },
+                "workingHours": "Configure working hours",
+                "subzoneWorkingHours": "Configure subzone working hours",
+                "subzones": "Configure subzones",
+                "subzone": {
+                    "label": "Subzone",
+                    "title": "Subzone on the map",
+                    "subtitle": "Draw a polygon of the subzone inside the zone on the map"
+                },
+                "fields": {
+                    "name": "Name",
+                    "countryId": "Country",
+                    "status": "Status",
+                    "minOrderAmount": "Minimum order amount",
+                    "maxOrderAmount": "Maximum order amount",
+                    "deliveryZonePolygon": "Delivery zone polygon",
+                    "deliveryZoneTimeWork": "Time work",
+                    "deliverySubZonePolygon": "Delivery subzone polygon",
+                    "openTime": "Start time",
+                    "closeTime": "End time"
+                },
+                "buttons": {
+                    "configure": "Configure",
+                    "add": "Add subzone",
+                    "cancel": "Cancel",
+                    "confirm": "Save changes",
+                    "gotothestore": "Go to the store details"
+                },
+                "messages": {
+                    "invalidDeliverySubZones": "Subzone is outside the delivery zone. Please make sure the subzone is within the delivery zone boundaries.",
+                    "deliveryZonePolygonNotSpecified": "Please specify the subzone of the delivery zone",
+                    "successfullyCreated": "The delivery zone was successfully created",
+                    "successfullyUpdated": "The delivery zone was successfully updated",
+                    "subzonesSuccessfullyUpdated": "The delivery zone subzones was successfully updated",
+                    "subzoneWorkingHoursSuccessfullyUpdated": "The subzone working hours were successfully updated",
+                    "workingHoursSuccessfullyUpdated": "The delivery zone working hours were successfully updated",
+                    "inactiveSubzones": "The subzones polygons depend on the delivery zone polygon",
+                    "inactiveSubzoneTimework": "Working hours of the Subzone depend on the determined working hours of the Delivery zone",
+                    "noDeliveryMenAssigned": "No delivery men assigned yet",
+                    "noAssignedStores": "No assigned stores",
+                    "noMainAssignedStore": "There's no Main store assigned to the delivery zone. Please assign Main store to make zone active",
+                    "inactiveStatusOnCreate": " Delivery zone will be created in the ‘Inactive’ status. You may activate it after creation."
+                },
+                "options": {
+                    "status": {
+                        "active": "Active",
+                        "inactive": "Inactive"
+                    },
+                    "deliverySubZoneType": {
+                        "restricted_hours": "Restricted hours",
+                        "deny_service": "Deny service"
+                    }
+                },
+                "errors": {
+                    "FAKE": " ",
+                    "INVALID": "Invalid {field}",
+                    "IS_NOT_EMPTY": "{field} is required",
+                    "IS_STRING": "{field} is required",
+                    "delivery_zone_is_exist": "Provided name is already in use",
+                    "CLOSE_TIME_IS_NOT_CORRECT": "Close time should be later than open time",
+                    "TOO_SMALL": "Value should be greater than or equal to {min}",
+                    "TOO_BIG": "Value must be less than or equal to {max}",
+                    "SHOULD_BE_LESS": "Minimum order amount exceeds the indicated Maximum order amount"
+                },
+                "modal": {
+                    "inactive": {
+                        "title": "Change status to Inactive?",
+                        "subtitle": "All assigned stores will become inactive. Customers will not be able to make orders in this delivery zone."
+                    },
+                    "active": {
+                        "title": "Change status to Active?",
+                        "subtitle": "Customers will be able to make orders in this delivery zone. Please make sure that at least 1 Delivery man is active to accept orders"
+                    },
+                    "workingHours": {
+                        "title": "Change working hours?",
+                        "subtitle": "This change will affect the working hours of the corresponding subzones. You may adjust them after confirming updated working hours of the delivery zone."
+                    },
+                    "inactivestore": {
+                        "title": "Main store for the delivery zone should be Active",
+                        "subtitle": "In order to activate the delivery zone, the assigned Main store need to be active. Go to the Store details to change its status"
+                    }
+                },
+                "weekday": {
+                    "monday": "Monday",
+                    "tuesday": "Tuesday",
+                    "wednesday": "Wednesday",
+                    "thursday": "Thursday",
+                    "friday": "Friday",
+                    "saturday": "Saturday",
+                    "sunday": "Sunday"
+                },
+                "stores": {
+                    "isMainStore": "Main"
+                }
+            },
+            "stores": {
+                "edit": "Edit store",
+                "add": "Add new store",
+                "blocks": {
+                    "generalInfo": "General info",
+                    "storeDeliveryZone": "Address & delivery zone",
+                    "storesTimeWork": "Working hours & max order amount",
+                    "storeManagers": "Store managers"
+                },
+                "workingHours": "Configure working hours",
+                "deliveryZone": "Configure address & delivery zone",
+                "maxOrderAmount": "Set maximum order amount per period",
+                "addressOnTheMap": "Address on the map",
+                "inDeliveryZone": "Delivery zone",
+                "storeType": "Store type",
+                "fields": {
+                    "name": "Store name",
+                    "inventoryId": "Identifier",
+                    "countryId": "Country",
+                    "status": "Status",
+                    "servicePhone": "Service phone number",
+                    "standardDeliveryTime": "Standart delivery time",
+                    "maxOrderAmount": "Max order amount",
+                    "maxOrderLag": "Max order lag",
+                    "openTime": "Open time",
+                    "closeTime": "Close time",
+                    "address": "Address",
+                    "position": "Physical location of the address",
+                    "storeId": "Store",
+                    "storeTimeWork": "Working hours & max order amount",
+                    "storeDeliveryZone": "Address & delivery zone"
+                },
+                "options": {
+                    "status": {
+                        "active": "Active",
+                        "inactive": "Inactive"
+                    },
+                    "storeType": {
+                        "main": "Main",
+                        "secondary": "Secondary"
+                    }
+                },
+                "buttons": {
+                    "configure": "Configure",
+                    "cancel": "Cancel",
+                    "confirm": "Save changes",
+                    "setMaxOrderAmount": "Set max order amount"
+                },
+                "weekday": {
+                    "monday": "Monday",
+                    "tuesday": "Tuesday",
+                    "wednesday": "Wednesday",
+                    "thursday": "Thursday",
+                    "friday": "Friday",
+                    "saturday": "Saturday",
+                    "sunday": "Sunday"
+                },
+                "messages": {
+                    "addressAndDeliveryZoneNotSpecified": "Please specify the physical location of the address",
+                    "successfullyCreated": "The store was successfully created",
+                    "successfullyUpdated": "The store was successfully updated",
+                    "addressAndDeliveryZoneSuccessfullyUpdated": "The address and delivery zone were successfully updated",
+                    "workingHoursSuccessfullyUpdated": "The store working hours were successfully updated",
+                    "maxOrderAmountSuccessfullyUpdated": "The max order amount was successfully updated",
+                    "noStoreManagersAssigned": "No store managers assigned yet",
+                    "storeType": "Create the delivery zone for this address to select store type",
+                    "noInDeliveryZone": "There is no delivery zone that includes the address of this store",
+                    "addressOnTheMap": "Pin the store location",
+                    "inventoryId": "Unique identifier for the store from the Inventory System",
+                    "inactiveStatusOnCreate": "Store will be created in the Inactive status. You may activate it after creation.",
+                    "maxOrderLag": "Max order lag time will be added to the Standard delivery time in case the Maximum order amount for the store is reached."
+                },
+                "errors": {
+                    "IS_NOT_EMPTY": "{field} is required",
+                    "INVALID": "Invalid {field}",
+                    "INVALID_IDENTIFIER": "Identifier indicated for the created entity in the current system shall match the same Identifier from the Inventory system!",
+                    "STORE_EXISTS": "Provided name is already in use",
+                    "TOO_SMALL": "Value should be greater than or equal to {min}",
+                    "TOO_BIG": "Value must be less than or equal to {max}",
+                    "FAKE": " ",
+                    "IS_STRING": "{field} is required",
+                    "CLOSE_TIME_IS_NOT_CORRECT": "Close time should be later than open time",
+                    "SHOULD_BE_LESS": "Minimum order amount exceeds the indicated Maximum order amount"
+                },
+                "modal": {
+                    "deliveryZone": {
+                        "storeName": "Store name",
+                        "mainStore": "Main store",
+                        "title": "Select new Main store for the Delivery zone {deliveryZone}.",
+                        "subtitle": "Since you want to change the type of this store to secondary for this zone, you must select the main store for this zone."
+                    },
+                    "deliveryZoneMainStore": {
+                        "title": "Change store type to ‘Main’ for Delivery zone {deliveryZone}?",
+                        "subtitle": "The previous main store {storeName} will become secondary."
+                    },
+                    "inactive": {
+                        "title": "Change status to Inactive?",
+                        "subtitle": "Customers will not be able to make orders and view catalog in this store.",
+                        "lastInTheDeliveryZoneSubtitle": "This store is the last in the Delivery zone <delivery zone name>. This delivery zone will become inactive."
+                    },
+                    "active": {
+                        "title": "Change status to Active?",
+                        "subtitle": "Customers will be able to make orders and view catalog in this store. Please make sure that at least 1 Store manager is active to manage orders"
+                    }
+                }
+            }
+        },
+        "filters": {
+            "default": "All",
+            "noData": "No data",
+            "search": {
+                "delivery-zones": "Search for zone",
+                "countries": "Search for country",
+                "stores": "Search for store",
+                "operator-management": "Search for operator",
+                "customer-management": "Search for customer",
+                "product-management": "Search for product"
+            }
+        }
+    },
+    "buttons": {
+        "cancel": "Cancel",
+        "save": "Save changes",
+        "configure": "Configure"
+    },
+    "weekday": {
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+    }
+}

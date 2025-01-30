@@ -1,0 +1,7 @@
+export enum Role {
+    SUPER_ADMINISTRATOR = 1,
+    COUNTRY_MANAGER,
+    STORE_MANAGER,
+    DELIVERY_MAN,
+    CUSTOMER,
+}

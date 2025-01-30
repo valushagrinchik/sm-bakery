@@ -1,0 +1,652 @@
+{
+    "status": {
+        "active": "Activo",
+        "blocked": "Bloqueado",
+        "deleted": "Eliminado"
+    },
+    "login": {
+        "signIn": {
+            "title": "Inicia sesión en tu cuenta",
+            "email": "Dirección de correo electrónico",
+            "password": "Contraseña",
+            "forgotPassword": "¿Olvidaste tu contraseña?",
+            "confirm": "Inicia sesión"
+        },
+        "resetPassword": {
+            "title": "Restablece tu contraseña",
+            "subtitle": "Ingresa tu correo electrónico y te enviaremos un código de verificación para restablecer la contraseña.",
+            "email": "Dirección de correo electrónico",
+            "confirm": "Envía el código de verificación"
+        },
+        "verifyEmail": {
+            "title": "Ingresa el código de verificación",
+            "subtitle": "Ingresa el código que te enviamos a {email}. Si no puedes encontrar el mensaje, revisa la carpeta de Spam.",
+            "code": "Código de verificación",
+            "confirm": "Confirmar",
+            "notReceived": "¿No has recibido el código?",
+            "resend": "Reenviar el código"
+        },
+        "newPassword": {
+            "title": "Crear nueva contraseña",
+            "change": "Cambiar contraseña",
+            "newPassword": "Nueva contraseña",
+            "repeatPassword": "Repetir nueva contraseña",
+            "confirm": "Crear nueva contraseña",
+            "cancel": "Cancelar",
+            "update": "Guardar cambios",
+            "success": "Contraseña actualizada exitosamente"
+        },
+        "errors": {
+            "IS_EMAIL": "Email no válido",
+            "IS_STRING": "Se requere {field}",
+            "IS_NOT_EMPTY": "Se requere {field}",
+            "INVALID_FIELD": "{field} no válido",
+            "NO_SPACES": "No se permiten espacios",
+            "IS_PASSWORD": "Contraseña inválida",
+            "EMAIL_IS_TOO_LONG": "El correo electrónico debe tener menos de 75 caracteres",
+            "PASSWORDS_NOT_MATCH": "Las contraseñas no coinciden",
+            "reset_code_is_not_valid": "Código de reinicio no válido",
+            "invalid_email_or_password": "Usuario no encontrado",
+            "user_not_found": "Usuario no encontrado",
+            "wrong_password": "Contraseña incorrecta"
+        }
+    },
+    "navbar": {
+        "productManagement": "Gestión de productos",
+        "categories": "Categorías",
+        "products": "Productos",
+        "operationalStructure": "Estructura operativa",
+        "countries": "Países",
+        "stores": "Tiendas",
+        "deliveryZones": "Zonas de entrega",
+        "orderManagement": "Gestión de pedidos",
+        "usersManagement": "Gestión de usuarios",
+        "customerManagement": "Gestión de clientes",
+        "operator-management": "Gestión de operadores",
+        "reportingAndAnalytics": "Informes y análisis",
+        "appVersionManagement": "Gestión de versiones de la app",
+        "accountSettings": "Configuración de la cuenta",
+        "logout": {
+            "button": "Cerrar sesión",
+            "text": "Estas seguro de cerrar sesión?",
+            "cancel": "Cancelar",
+            "confirm": "Cerrar sesión"
+        },
+        "locale": {
+            "en": "Inglés",
+            "es": "Español"
+        }
+    },
+    "panel": {
+        "customer-management": {
+            "title": "Gestión de clientes",
+            "status": "Estado",
+            "country": "País",
+            "role": "Rol",
+            "active": "Activo",
+            "blocked": "Bloqueado",
+            "fields": {
+                "id": "#",
+                "name": "Nombre",
+                "email": "Email",
+                "registrationDate": "Fecha de registro",
+                "totalValue": "Valor total",
+                "phone": "Teléfono",
+                "status": "Estado",
+                "actions": "Acciones"
+            }
+        },
+        "operator-management": {
+            "title": "Gestión de operadores",
+            "add": "Añadir nuevo operador",
+            "status": "Estado",
+            "country": "País",
+            "role": "Rol",
+            "active": "Activo",
+            "blocked": "Bloqueado",
+            "fields": {
+                "id": "#",
+                "name": "Nombre",
+                "email": "Email",
+                "phone": "Teléfono",
+                "role": "Rol",
+                "status": "Estado",
+                "actions": "Acciones"
+            }
+        },
+        "product-management": {
+            "title": "Gestión de productos",
+            "sync": "Sincronizar",
+            "status": "Estado",
+            "country": "País",
+            "store": "Tienda",
+            "visibility": "Visibilidad",
+            "category": "Categoría",
+            "subCategory": "Subcategoría",
+            "active": "Activo",
+            "blocked": "Bloqueado",
+            "alerts": {
+                "timeoutError": "El servicio de sincronización no está disponible",
+                "syncInProcess": "La sincronización de productos está en proceso...",
+                "syncSuccess": "Productos sincronizados exitosamente",
+                "syncError": "Productos sincronizados con errores"
+            },
+            "filters": {
+                "status": {
+                    "name": "Estado",
+                    "options": {
+                        "all": "Todos",
+                        "active": "Activo",
+                        "inactive": "Inactivo"
+                    }
+                },
+                "visibility": {
+                    "name": "Visibilidad",
+                    "options": {
+                        "all": "Todos",
+                        "visible": "Visible",
+                        "hidden": "Oculto"
+                    }
+                },
+                "store": {
+                    "name": "Tienda",
+                    "options": {
+                        "all": "Todas"
+                    }
+                },
+                "category": {
+                    "name": "Categoría",
+                    "options": {
+                        "all": "Todas"
+                    }
+                },
+                "subCategory": {
+                    "name": "Subcategoría",
+                    "options": {
+                        "all": "Todas"
+                    }
+                }
+            },
+            "fields": {
+                "id": "#",
+                "name": "Nombre del producto",
+                "category": "Categoría",
+                "visibility": "Visibilidad",
+                "subcategory": "Subcategoría",
+                "status": "Estado",
+                "actions": "Acciones"
+            },
+            "form": {
+                "view": {
+                    "title": "Detalles del producto",
+                    "isVisibility": "Visibilidad",
+                    "ok": "OK",
+                    "modifiers": "Modificadores",
+                    "noModifiers": "Sin modificadores"
+                }
+            }
+        },
+        "countries": {
+            "title": "Países",
+            "fields": {
+                "id": "Identificación",
+                "name": "Nombre",
+                "currency": "Moneda",
+                "phoneCode": "Código telefónico",
+                "status": "Estado",
+                "actions": "Acciones",
+                "inventoryId": "Identificador"
+            },
+            "filters": {
+                "status": {
+                    "name": "Estado",
+                    "options": {
+                        "all": "Todos",
+                        "active": "Activo",
+                        "inactive": "Inactivo"
+                    }
+                }
+            },
+            "form": {
+                "edit": {
+                    "title": "Editar país",
+                    "generalInfo": "Información general",
+                    "managers": "Administradores de país",
+                    "fields": {
+                        "name": "Nombre",
+                        "code": "Código de moneda",
+                        "phoneCode": "Código telefónico",
+                        "currency": "Símbolo de moneda",
+                        "status": "Estado",
+                        "inventoryId": "Identificador"
+                    },
+                    "options": {
+                        "status": {
+                            "all": "Todos",
+                            "active": "Activo",
+                            "inactive": "Inactivo"
+                        }
+                    },
+                    "messages": {
+                        "successfullyCreated": "El país fue creado exitosamente",
+                        "successfullyUpdated": "El país se actualizó exitosamente",
+                        "noManagersAssigned": "Aún no se han asignado gerentes de país",
+                        "inventoryId": "Identificador único para el país del Sistema de Inventario"
+                    },
+                    "errors": {
+                        "IS_NOT_EMPTY": "{field} es obligatorio",
+                        "IS_STRING": "{field} es obligatorio",
+                        "INVALID": "{field} no válido",
+                        "INVALID_IDENTIFIER": "¡El identificador indicado para la entidad creada en el sistema actual debe coincidir con el mismo identificador del sistema de inventario!",
+                        "TOO_BIG": "El valor debe ser menor o igual a {max}"
+                    }
+                }
+            }
+        },
+        "stores": {
+            "title": "Tiendas",
+            "new": "Añadir nueva tienda",
+            "fields": {
+                "id": "#",
+                "name": "Nombre",
+                "country": "País",
+                "inventoryId": "Identificador",
+                "deliveryZones": "Zonas de entrega",
+                "status": "Estado",
+                "actions": "Acciones"
+            },
+            "filters": {
+                "status": {
+                    "name": "Estado",
+                    "options": {
+                        "all": "Todas",
+                        "active": "Activo",
+                        "inactive": "Inactivo"
+                    }
+                },
+                "countryId": {
+                    "name": "Países"
+                },
+                "deliveryZoneId": {
+                    "name": "Zona de entrega"
+                }
+            },
+            "messages": {
+                "deliveryZoneInactive": "La zona de entrega de la tienda está inactiva"
+            },
+            "isMainStore": "Principal",
+            "isSecondaryStore": "Secundaria"
+        },
+        "delivery-zones": {
+            "title": "Gestión de zonas de entrega",
+            "new": "Añadir nueva zona de entrega",
+            "filters": {
+                "status": {
+                    "name": "Estado",
+                    "options": {
+                        "all": "Todos",
+                        "active": "Activo",
+                        "inactive": "Inactivo"
+                    }
+                },
+                "country": {
+                    "name": "País"
+                },
+                "store": {
+                    "name": "Tienda"
+                }
+            },
+            "fields": {
+                "id": "Id",
+                "name": "Nombre",
+                "country": "País",
+                "store": "Tienda",
+                "subzones": "Subzonas",
+                "status": "Estado",
+                "actions": "Acciones"
+            },
+            "stores": {
+                "isMainStore": "Principal",
+                "more": "más..."
+            },
+            "app-version-management": {
+                "title": "Gestión de versiones de la aplicación",
+                "customerApp": "Versión de la aplicación del cliente correspondiente",
+                "operatorApp": "Versión de la aplicación del operador correspondiente",
+                "android": "Android",
+                "ios": "IOS",
+                "cancel": "Cancelar",
+                "submit": "Versión actualizada",
+                "customerAppAndroid": "Versión de android",
+                "customerAppIos": "Versión iOS",
+                "operatorAppAndroid": "Versión de android",
+                "operatorAppIos": "Versión iOS",
+                "errors": {
+                    "IS_NOT_EMPTY": "Se requiere la {field}",
+                    "IS_STRING": "Se requiere la {field}",
+                    "IS_VERSION": "Versión no válida"
+                },
+                "success": "Versión actualizada exitosamente"
+            },
+            "account-settings": {
+                "title": "Account settings"
+            }
+        },
+        "pagination": {
+            "prev": "Anterior",
+            "next": "Siguiente"
+        },
+        "form": {
+            "customer-management": {
+                "edit": {
+                    "title": "Editar cliente",
+                    "status": "Estado",
+                    "country": "País",
+                    "role": "Rol",
+                    "store": "Tienda",
+                    "firstName": "Nombre",
+                    "lastName": "Apellido",
+                    "email": "Email",
+                    "phone": "Teléfono",
+                    "avatar": "Avatar",
+                    "cancel": "Cancelar",
+                    "submit": "Invitar cliente",
+                    "update": "Guardar cambios",
+                    "change": "Cambiar",
+                    "delete": "Eliminar",
+                    "active": "Activo",
+                    "resetPassword": "Restablecer contraseña",
+                    "blocked": "Bloqueado",
+                    "errors": {
+                        "IS_EMAIL": "Email no válido",
+                        "IS_STRING": "Se requere {field}",
+                        "IS_NOT_EMPTY": "Se requere {field}",
+                        "IS_PHONE": "Número de teléfono no válido",
+                        "INVALID_FIELD": "{field} no válido",
+                        "user_with_this_email_exists": "El email debe ser único. Intente con otro email.",
+                        "user_with_this_phone_exists": "El teléfono debe ser único. Intente con otro teléfono."
+                    },
+                    "messages": {
+                        "successfullyUpdated": "El cliente fue actualizado exitosamente"
+                    }
+                },
+                "view": {
+                    "title": "Historial de pedidos",
+                    "ok": "OK"
+                }
+            },
+            "operator-management": {
+                "edit": "Editar operador",
+                "add": "Añadir nuevo operador",
+                "status": "Estado",
+                "country": "País",
+                "role": "Rol",
+                "store": "Tienda",
+                "firstName": "Nombre",
+                "lastName": "Apellido",
+                "email": "Email",
+                "deliveryZone": "Zona de entrega",
+                "phone": "Teléfono",
+                "avatar": "Avatar",
+                "cancel": "Cancelar",
+                "submit": "Invitar al operador",
+                "update": "Guardar cambios",
+                "change": "Cambiar",
+                "delete": "Borrar",
+                "active": "Activo",
+                "resetPassword": "Restablecer contraseña",
+                "blocked": "Obstruido",
+                "success": "Configuración actualizada exitosamente",
+                "errors": {
+                    "IS_EMAIL": "Email no válido",
+                    "IS_STRING": "Se requere {field}",
+                    "IS_NOT_EMPTY": "Se requere {field}",
+                    "IS_PHONE": "Número de teléfono no válido",
+                    "INVALID_FIELD": "{field} no válido",
+                    "user_with_this_email_exists": "El email debe ser único. Intente con otro email.",
+                    "user_with_this_phone_exists": "El teléfono debe ser único. Intente con otro teléfono."
+                },
+                "messages": {
+                    "successfullyCreated": "El operador se creó correctamente",
+                    "successfullyUpdated": "El operador se actualizó correctamente"
+                }
+            },
+            "delivery-zones": {
+                "edit": "Editar zona de entrega",
+                "add": "Añadir nueva zona de entrega",
+                "blocks": {
+                    "generalInfo": "Información general",
+                    "subzones": "Subzonas",
+                    "workingHours": "Horario de trabajo",
+                    "assignedStores": {
+                        "title": "Tiendas asignadas",
+                        "subtitle": "Lista de tiendas incluidas en la zona de reparto. Seleccione la tienda principal. Las demás tiendas se considerarán secundarias"
+                    },
+                    "deliveryMen": "Repartidores",
+                    "map": {
+                        "title": "Zona en el mapa",
+                        "subtitle": "Dibuje un polígono de la zona de reparto en el mapa"
+                    }
+                },
+                "workingHours": "Configurar horario de trabajo",
+                "subzoneWorkingHours": "Configurar el horario laboral de la subzona",
+                "subzones": "Configurar subzonas",
+                "subzone": {
+                    "label": "Subzona",
+                    "title": "Subzona en el mapa",
+                    "subtitle": "Dibuja un polígono de la subzona dentro de la zona en el mapa"
+                },
+                "fields": {
+                    "name": "Nombre",
+                    "countryId": "País",
+                    "status": "Estado",
+                    "minOrderAmount": "Monto mínimo del pedido",
+                    "maxOrderAmount": "Monto máximo del pedido",
+                    "deliveryZonePolygon": "Polígono de la zona de entrega",
+                    "deliveryZoneTimeWork": "Tiempo de trabajo",
+                    "deliverySubZonePolygon": "Polígono de la subzona de entrega",
+                    "openTime": "Hora de inicio",
+                    "closeTime": "Hora de finalización"
+                },
+                "buttons": {
+                    "configure": "Configurar",
+                    "add": "Añadir subzona",
+                    "cancel": "Cancelar",
+                    "confirm": "Guardar cambios",
+                    "gotothestore": "Ir a los detalles de la tienda"
+                },
+                "messages": {
+                    "invalidDeliverySubZones": "La subzona está fuera de la zona de entrega. Asegúrese de que la subzona esté dentro de los límites de la zona de entrega.",
+                    "deliveryZonePolygonNotSpecified": "Especifique la subzona de la zona de entrega",
+                    "successfullyCreated": "La zona de entrega que creaste exitosamente",
+                    "successfullyUpdated": "La zona de entrega que has actualizado con éxito",
+                    "subzonesSuccessfullyUpdated": "La subzona de la zona de entrega se actualizó correctamente",
+                    "subzoneWorkingHoursSuccessfullyUpdated": "El horario de trabajo de la subzona se actualizó correctamente",
+                    "workingHoursSuccessfullyUpdated": "El horario laboral de la zona de entrega se actualizó correctamente",
+                    "inactiveSubzones": "Los polígonos de las subzonas dependen del polígono de la zona de entrega",
+                    "inactiveSubzoneTimework": "El horario de trabajo de la Subzona depende del horario de trabajo determinado de la Zona de Entrega",
+                    "noDeliveryMenAssigned": "Aún no hay repartidores asignados",
+                    "noAssignedStores": "No hay tiendas asignadas",
+                    "noMainAssignedStore": "No hay ninguna tienda principal asignada a la zona de entrega. Asigne una tienda principal para activar la zona",
+                    "inactiveStatusOnCreate": "La zona de reparto se creará en estado 'Inactivo'. Puedes activarla después de su creación."
+                },
+                "options": {
+                    "status": {
+                        "active": "Activo",
+                        "inactive": "Inactivo"
+                    },
+                    "deliverySubZoneType": {
+                        "restricted_hours": "Horario restringido",
+                        "deny_service": "Denegar servicio"
+                    }
+                },
+                "errors": {
+                    "FAKE": " ",
+                    "IS_NOT_EMPTY": "{field} es obligatorio",
+                    "IS_STRING": "{field} es obligatorio",
+                    "INVALID": "{field} no válido",
+                    "delivery_zone_is_exist": "El nombre proporcionado ya está en uso",
+                    "CLOSE_THEME_IS_NOT_CORRECT": "La hora de cierre debe ser posterior a la hora de apertura",
+                    "TOO_SMALL": "{field} no válido",
+                    "TOO_BIG": "{field} no válido",
+                    "SHOULD_BE_LESS": "El importe mínimo del pedido supera el importe máximo del pedido indicado"
+                },
+                "modal": {
+                    "inactive": {
+                        "title": "¿Cambiar el estado a Inactivo?",
+                        "subtitle": "Todas las tiendas asignadas pasarán a estar inactivas. Los clientes no podrán realizar pedidos en esta zona de entrega."
+                    },
+                    "active": {
+                        "title": "¿Cambiar el estado a Activo?",
+                        "subtitle": "Los clientes podrán realizar pedidos en esta zona de entrega. Asegúrese de que al menos 1 repartidor esté activo para aceptar pedidos."
+                    },
+                    "workingHours": {
+                        "title": "¿Cambiar el horario laboral?",
+                        "subtitle": "Este cambio afectará el horario laboral de las subzonas correspondientes. Puede ajustarlo después de confirmar el horario laboral actualizado de la zona de entrega."
+                    },
+                    "inactivestore": {
+                        "title": "La tienda principal de la zona de entrega debe estar Activa",
+                        "subtitle": "Para activar la zona de entrega, la tienda principal asignada debe estar activa. Vaya a los detalles de la tienda para cambiar su estado"
+                    }
+                },
+                "weekday": {
+                    "monday": "Lunes",
+                    "tuesday": "Martes",
+                    "wednesday": "Miércoles",
+                    "thursday": "Jueves",
+                    "friday": "Viernes",
+                    "saturday": "Sábado",
+                    "sunday": "Domingo"
+                },
+                "stores": {
+                    "isMainStore": "Principal"
+                }
+            },
+            "stores": {
+                "edit": "Editar tienda",
+                "add": "Añadir nueva tienda",
+                "blocks": {
+                    "generalInfo": "Información general",
+                    "storeDeliveryZone": "Dirección y zona de entrega",
+                    "storesTimeWork": "Horario de trabajo y cantidad máxima de pedido",
+                    "storeManagers": "Gerentes de tienda"
+                },
+                "workingHours": "Configurar horario de trabajo",
+                "deliveryZone": "Configurar dirección y zona de entrega",
+                "maxOrderAmount": "Establecer cantidad máxima de pedido por periodo",
+                "addressOnTheMap": "Dirección en el mapa",
+                "inDeliveryZone": "Zona de entrega",
+                "storeType": "Tipo de tienda",
+                "fields": {
+                    "name": "Nombre de la tienda",
+                    "inventoryId": "Identificador",
+                    "countryId": "País",
+                    "status": "Estado",
+                    "servicePhone": "Número de teléfono de servicio",
+                    "standardDeliveryTime": "Tiempo de entrega estándar",
+                    "maxOrderAmount": "Monto máximo del pedido",
+                    "maxOrderLag": "Retraso máximo del pedido",
+                    "openTime": "Hora de apertura",
+                    "closeTime": "Hora de cierre",
+                    "address": "Dirección",
+                    "position": "Ubicación física de la dirección",
+                    "storeId": "Tienda",
+                    "storeTimeWork": "Horas de trabajo y monto máximo del pedido",
+                    "storeDeliveryZone": "Dirección y zona de entrega"
+                },
+                "options": {
+                    "status": {
+                        "active": "Activo",
+                        "inactive": "Inactivo"
+                    },
+                    "storeType": {
+                        "main": "Principal",
+                        "secondary": "Secundario"
+                    }
+                },
+                "buttons": {
+                    "configure": "Configurar",
+                    "cancel": "Cancelar",
+                    "confirm": "Guardar cambios",
+                    "setMaxOrderAmount": "Establecer importe máximo del pedido"
+                },
+                "weekday": {
+                    "monday": "Lunes",
+                    "tuesday": "Martes",
+                    "wednesday": "Miércoles",
+                    "thursday": "Jueves",
+                    "friday": "Viernes",
+                    "saturday": "Sábado",
+                    "sunday": "Domingo"
+                },
+                "messages": {
+                    "addressAndDeliveryZoneNotSpecified": "Especifique la ubicación física de la dirección",
+                    "successfullyCreated": "La tienda que creaste con éxito",
+                    "successfullyUpdated": "La tienda que sigues exitosamente se actualizó",
+                    "addressAndDeliveryZoneSuccessfullyUpdated": "La dirección y la zona de entrega se actualizaron correctamente",
+                    "workingHoursSuccessfullyUpdated": "El horario de atención de la tienda se actualizó correctamente",
+                    "maxOrderAmountSuccessfullyUpdated": "El monto máximo del pedido se actualizó correctamente",
+                    "noStoreManagersAssigned": "Aún no hay gerentes de tienda asignados",
+                    "storeType": "Crea la zona de entrega para esta dirección para seleccionar el tipo de tienda",
+                    "noInDeliveryZone": "No hay ninguna zona de entrega que incluya la dirección de esta tienda",
+                    "addressOnTheMap": "Fija la ubicación de la tienda",
+                    "inventoryId": "Identificador único para la tienda del Sistema de inventario",
+                    "inactiveStatusOnCreate": "La tienda se creará en estado Inactivo. Puedes activarla después de la creación.",
+                    "maxOrderLag": "El tiempo máximo de demora del pedido se agregará al tiempo de entrega estándar en caso de que se alcance la cantidad máxima de pedidos para la tienda."
+                },
+                "errors": {
+                    "FAKE": " ",
+                    "IS_NOT_EMPTY": "{field} es obligatorio",
+                    "INVALID": "{field} no válido",
+                    "INVALID_IDENTIFIER": "¡El identificador indicado para la entidad creada en el sistema actual debe coincidir con el mismo identificador del sistema de inventario!",
+                    "STORE_EXISTS": "El nombre proporcionado ya está en uso",
+                    "TOO_SMALL": "El valor debe ser mayor o igual a {min}",
+                    "TOO_BIG": "El valor debe ser menor o igual a {max}",
+
+                    "IS_STRING": "{field} es obligatorio",
+                    "CLOSE_TIME_IS_NOT_CORRECT": "La hora de cierre debe ser posterior a la hora de apertura",
+
+                    "SHOULD_BE_LESS": "El importe mínimo del pedido supera el importe máximo del pedido indicado"
+                },
+                "modal": {
+                    "deliveryZone": {
+                        "storeName": "Nombre de la tienda",
+                        "mainStore": "Tienda principal",
+                        "title": "Seleccione una nueva tienda principal para la zona de entrega {deliveryZone}.",
+                        "subtitle": "Dado que desea cambiar el tipo de esta tienda es secundario para esta zona, debe seleccionar la tienda principal para esta zona."
+                    },
+                    "deliveryZoneMainStore": {
+                        "title": "¿Cambiar el tipo de tienda a 'Principal' para la zona de entrega {deliveryZone}?",
+                        "subtitle": "La tienda principal anterior {storeName} pasará a ser secundaria."
+                    },
+                    "inactive": {
+                        "title": "¿Cambiar el estado a Inactivo?",
+                        "subtitle": "Los clientes no podrán realizar pedidos ni ver el catálogo en esta tienda.",
+                        "lastInTheDeliveryZoneSubtitle": "Esta tienda es la última en la zona de entrega <nombre de la zona de entrega>. Esta zona de entrega pasará a ser inactiva."
+                    },
+                    "active": {
+                        "title": "¿Cambiar el estado a Activo?",
+                        "subtitle": "Los clientes podrán realizar pedidos y ver el catálogo en esta tienda. Asegúrese de que al menos 1 administrador de tienda esté activo para administrar pedidos"
+                    }
+                }
+            }
+        },
+        "filters": {
+            "default": "Todos",
+            "noData": "Sin datos",
+            "search": {
+                "delivery-zones": "Buscar zona",
+                "countries": "Buscar país",
+                "stores": "Buscar tienda",
+                "operator-management": "Buscar operador",
+                "customer-management": "Buscar cliente",
+                "product-management": "Buscar producto"
+            }
+        }
+    },
+    "buttons": {
+        "cancel": "Cancelar",
+        "save": "Guardar cambios",
+        "configure": "Configurar"
+    }
+}
