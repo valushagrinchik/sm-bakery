@@ -1,7 +1,7 @@
 import { getCurrentUserPermissions } from '@/actions/user'
 import { getLocale } from 'next-intl/server'
 import Image from 'next/image'
-import NavbarLogo from '../../NavbarLogo.svg'
+import NavbarLogo from '../../../app/(panel)/NavbarLogo.svg'
 import { panelNavbarConfig } from './config'
 import { LanguageSelector } from './LanguageSelect'
 import { LogoutButton } from './LogoutButton'
