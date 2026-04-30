@@ -16,6 +16,10 @@ A modern admin panel built with Next.js, featuring SSR (Server-Side Rendering) a
 -   **UI Components**: Headless UI and Heroicons
 -   **Toast Notifications**: React Toastify for user feedback
 
+## Demo
+
+![San Martin Admin Panel](./Monosnap%20San%20Martin%20Admin%20Panel%202026-04-09%2015-55-47.png)
+
 ## Prerequisites
 
 -   Node.js (v20 max)
