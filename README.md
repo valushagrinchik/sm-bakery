@@ -63,68 +63,23 @@ For production API:
 pnpm libgen
 ```
 
-## Available Scripts
-
--   `pnpm dev` - Start development server with Node.js inspector
--   `pnpm build` - Build the application for production
--   `pnpm start` - Start production server
--   `pnpm lint` - Run ESLint
--   `pnpm format` - Format code with Prettier
--   `pnpm test` - Run build as a test
--   `pnpm docker` - Build and run Docker container for production
--   `pnpm docker:dev` - Build and run Docker container for development
-
-## Project Structure
-
-```
-src/
-  app/              # Next.js App Router
-  pages/            # Pages directory (if using Pages Router)
-  shared/           # Shared utilities and libraries
-    lib/            # Utility libraries
-      sanMartinApi/ # Auto-generated API client
-  features/         # Feature modules (FSD architecture)
-  entities/         # Business entities
-  widgets/          # UI widgets
-```
-
 ## Architecture
 
 This project follows the **Feature-Sliced Design (FSD)** methodology:
 
--   **app/** - Application setup and routing
--   **shared/** - Cross-cutting concerns and utilities
--   **entities/** - Business entities and data models
--   **features/** - User-facing features
--   **widgets/** - Composite UI components
-
-## Tech Stack Details
-
-### Core Framework
-
--   **Next.js 15**: React framework with App Router support
--   **React 19**: Latest React version with concurrent features
--   **TypeScript**: Type-safe development
-
-### Styling & UI
-
--   **Tailwind CSS**: Utility-first CSS framework
--   **Headless UI**: Unstyled, accessible UI components
--   **Heroicons**: SVG icon library
-
-### State & Data Management
-
--   **Zustand**: Lightweight state management
--   **React Hook Form**: Form state management
--   **Zod**: Schema validation
--   **SWR**: Data fetching (if used)
-
-### Development Tools
-
--   **ESLint**: Code linting
--   **Prettier**: Code formatting
--   **TypeScript**: Static type checking
-
-## License
-
-This project is private and proprietary.
+```
+src/
+  app/              # Next.js App Router
+  actions/          # Server-side actions
+  i18n/             # Internationalization setup and translations
+  shared/           # Cross-cutting concerns and utilities
+    lib/            # Utility libraries
+      sanMartinApi/ # Auto-generated API client
+    hooks/          # Custom React hooks
+    ui/             # Shared UI components (FSD)
+    types/          # Shared TypeScript types
+    utils/          # Utility functions
+  entities/         # Business entities and data models (FSD)
+  features/         # User-facing features (FSD)
+  widgets/          # Composite UI components (FSD)
+```
