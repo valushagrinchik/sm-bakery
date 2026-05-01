@@ -6,7 +6,7 @@ import {
   StoreOrderPerHoursEntity,
   TimeWorkCreateDto,
 } from '@san-martin/san-martin-libs';
-import ct from 'countries-and-timezones';
+import ct, { Country } from 'countries-and-timezones';
 import * as dayjs from 'dayjs';
 import * as isBetween from 'dayjs/plugin/isBetween';
 import * as timezonePlugin from 'dayjs/plugin/timezone';
@@ -24,8 +24,8 @@ export const validateDate = (
   timeWork: TimeWorkCreateDto,
   date: dayjs.Dayjs,
 ) => {
-  const timeZone: ct.Country = ct.getCountry(countryCode) as ct.Country;
-  if (!timeZone) {
+  const timeZone: Country | undefined = ct.getCountry(countryCode);
+  if (!timeZone || !timeZone.timezones || timeZone.timezones.length === 0) {
     throw new OperationError(ErrorMessageEnum.COUNTRY_CODE_ISSUE, HttpStatus.BAD_REQUEST);
   }
   const tzDate = date.tz(timeZone.timezones[0]);
@@ -44,8 +44,8 @@ export const validateMaxOrderAmount = (
   storeOrderPerHours: Pick<StoreOrderPerHoursEntity, 'weekName' | 'listOrderPerHours'>[],
   date: dayjs.Dayjs,
 ) => {
-  const timeZone: ct.Country = ct.getCountry(countryCode) as ct.Country;
-  if (!timeZone) {
+  const timeZone: Country | undefined = ct.getCountry(countryCode);
+  if (!timeZone || !timeZone.timezones || timeZone.timezones.length === 0) {
     throw new OperationError(ErrorMessageEnum.COUNTRY_CODE_ISSUE, HttpStatus.BAD_REQUEST);
   }
   const tzDate = date.tz(timeZone.timezones[0]);
@@ -72,6 +72,15 @@ export const validateMaxOrderAmount = (
 };
 
 export const isTimeBetween = (date: dayjs.Dayjs, startTime?: string, endTime?: string) => {
+  if (!startTime || !endTime) {
+    return {
+      date,
+      startDate: null,
+      endDate: null,
+      isBetween: false,
+    };
+  }
+
   const [startHours, startMinutes] = startTime.split(':');
   const [endHours, endMinutes] = endTime.split(':');
 
