@@ -1,0 +1,32 @@
+services:
+    san-martin-rabbitmq: 
+        image: rabbitmq:4.0-management
+        restart: always
+        container_name: san-martin-rabbitmq
+        ports:
+            - '5672:5672'
+            - '15672:15672'
+
+    san-martin-redis:
+        image: redis:latest
+        ports:
+            - "6380:6379"
+
+    san-martin-pg:
+        restart: always
+        container_name: san-martin-pg
+        ports:
+            - '5434:5432'
+        build:
+            context: .
+            dockerfile: Dockerfile-db
+        environment:
+            POSTGRES_USER: san-martin
+            POSTGRES_PASSWORD: san-martin
+            POSTGRES_DB: san-martin
+        volumes:
+            - ./sequelize/docker/development:/docker-entrypoint-initdb.d
+            - ~/docker-volumes/san-martin_postgres-data:/var/lib/postgresql/data
+
+volumes:
+    san-martin_postgres-data:

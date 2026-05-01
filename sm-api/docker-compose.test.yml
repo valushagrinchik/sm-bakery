@@ -1,0 +1,13 @@
+services:
+    san-martin-pg-test:
+        image: postgres:14
+        restart: always
+        container_name: san-martin-pg-test
+        ports:
+            - '5435:5432'
+        environment:
+            POSTGRES_USER: san-martin
+            POSTGRES_PASSWORD: san-martin
+            POSTGRES_DB: san-martin-test
+        volumes:
+            - ./sequelize/docker/test:/docker-entrypoint-initdb.d

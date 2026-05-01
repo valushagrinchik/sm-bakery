@@ -1,85 +1,123 @@
-# Admin Panel for SM Bakery House
+# San Martín Bakery
 
-A modern admin panel built with Next.js, featuring SSR (Server-Side Rendering) and FSD (Feature-Sliced Design) architecture for managing SM Bakery House operations.
+A full-stack bakery management system with separate frontend and backend applications.
 
-## Features
+## Projects
 
--   **Modern Tech Stack**: Next.js 15, React 19, TypeScript, Tailwind CSS
--   **Feature-Sliced Design**: Clean and scalable architecture
--   **Server-Side Rendering**: Optimized for performance and SEO
--   **Internationalization**: Multi-language support with next-intl
--   **Form Management**: React Hook Form with Zod validation
--   **State Management**: Zustand for global state
--   **API Integration**: Auto-generated TypeScript clients from Swagger/OpenAPI
--   **Real-time Updates**: Socket.io integration
--   **Maps Integration**: Google Maps integration via @vis.gl/react-google-maps
--   **UI Components**: Headless UI and Heroicons
--   **Toast Notifications**: React Toastify for user feedback
+### 🖥️ Admin Panel ([`sm-admin`](./sm-admin))
+Next.js-based admin dashboard for bakery management
+- **Technology**: Next.js 15, React 19, TypeScript, Tailwind CSS
+- **Features**: Admin interface, real-time updates, Google Maps integration
+- **Development**: `pnpm dev`
+- **Build**: `pnpm build`
 
-## Demo
+### 🔌 API Backend ([`sm-api`](./sm-api))
+NestJS-based REST API with microservices architecture
+- **Technology**: NestJS, TypeScript, Sequelize, PostgreSQL
+- **Services**: Main API, Email Service, SMS Service, Catalog Parsing Service, Notification Service
+- **Development**: `pnpm start:dev`
+- **Production**: `pnpm start:prod`
 
-![San Martin Admin Panel](./Monosnap%20San%20Martin%20Admin%20Panel%202026-04-09%2015-55-47.png)
+## Quick Start
 
-## Prerequisites
+### Prerequisites
+- Node.js (v18+)
+- PostgreSQL
+- Redis (for caching)
+- Docker (optional)
 
--   Node.js (v20 max)
--   pnpm package manager
+### Development Setup
 
-## Getting Started
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd sm-bakery
+   ```
 
-### 1. Install Dependencies
+2. **Install dependencies**
+   ```bash
+   # Admin Panel
+   cd sm-admin
+   pnpm install
+   
+   # API Backend
+   cd ../sm-api
+   pnpm install
+   ```
+
+3. **Environment Setup**
+   - Copy `.env.example` to `.env` in both projects
+   - Configure database connections and API keys
+
+4. **Database Setup**
+   ```bash
+   cd sm-api
+   pnpm migration:up
+   pnpm db:seed:run
+   ```
+
+5. **Start Development Servers**
+   ```bash
+   # Terminal 1 - API Backend
+   cd sm-api
+   pnpm start:dev
+   
+   # Terminal 2 - Admin Panel
+   cd sm-admin
+   pnpm dev
+   ```
+
+## Docker Support
+
+Both projects include Docker configurations:
 
 ```bash
-pnpm install
-```
+# Admin Panel
+cd sm-admin
+pnpm docker:dev
 
-### 2. Environment Setup
-
-Create a `.env.local` file in the root directory (copy from `.env` if available):
-
-```env
-# Add your environment variables here
-```
-
-### 3. Run Development Server
-
-```bash
-pnpm dev
-```
-
-The application will be available at `http://localhost:3000`
-
-### 4. Generate API Client (Optional)
-
-For development with local API:
-
-```bash
-pnpm libgen:dev
-```
-
-For production API:
-
-```bash
-pnpm libgen
+# API Backend
+cd sm-api
+pnpm docker
 ```
 
 ## Architecture
 
-This project follows the **Feature-Sliced Design (FSD)** methodology:
+```
+sm-bakery/
+├── sm-admin/          # Next.js Admin Dashboard
+├── sm-api/            # NestJS API Backend
+│   ├── apps/
+│   │   ├── san-martin-api/
+│   │   ├── email-service/
+│   │   ├── sms-service/
+│   │   ├── catalog-parsing-service/
+│   │   └── notification-service/
+│   └── libs/
+└── README.md          # This file
+```
 
-```
-src/
-  app/              # Next.js App Router
-  actions/          # Server-side actions
-  i18n/             # Internationalization setup and translations
-  shared/           # Cross-cutting concerns and utilities
-    lib/            # Utility libraries
-      sanMartinApi/ # Auto-generated API client
-    hooks/          # Custom React hooks
-    ui/             # Shared UI components (FSD)
-    types/          # Shared TypeScript types
-    utils/          # Utility functions
-  entities/         # Business entities and data models (FSD)
-  features/         # User-facing features (FSD)
-  widgets/          # Composite UI components (FSD)
-```
+## Technologies Used
+
+### Frontend (sm-admin)
+- **Framework**: Next.js 15 with App Router
+- **UI**: React 19, Tailwind CSS, Headless UI
+- **State Management**: Zustand
+- **Forms**: React Hook Form with Zod validation
+- **Maps**: Google Maps API
+- **Real-time**: Socket.io Client
+
+### Backend (sm-api)
+- **Framework**: NestJS 10
+- **Database**: PostgreSQL with Sequelize ORM
+- **Authentication**: JWT
+- **File Storage**: AWS S3
+- **Email**: Brevo API
+- **Caching**: Redis
+- **Message Queue**: Bull Queue with Redis
+- **WebSocket**: Socket.io
+- **Documentation**: Swagger/OpenAPI
+
+## License
+
+Private project - All rights reserved.

@@ -1,0 +1,373 @@
+stages:
+  - migration
+  - tests
+  - publish_microservices
+  - publish_api
+  - deploy_microservices
+  - deploy_api
+
+variables:
+  DOCKER_REGISTRY: 178431145339.dkr.ecr.us-east-1.amazonaws.com
+  APP_NAME: san-martin-api
+  APP_NAME_STAGE: san-martin-api-stage
+  MIGRATION_NAME: san-martin-migration
+  EMAIL_SERVICE_NAME: san-martin-email-service
+  EMAIL_SERVICE_NAME_STAGE: san-martin-email-service-stage
+  SMS_SERVICE_NAME: san-martin-sms-service
+  SMS_SERVICE_NAME_STAGE: san-martin-sms-service-stage
+  CATEGORY_PARSING_SERVICE_NAME: san-martin-category-parsing-service
+  CATEGORY_PARSING_SERVICE_STAGE: san-martin-category-parsing-service-stage
+  NOTIFICATION_SERVICE_NAME: san-martin-notification-service
+  NOTIFICATION_SERVICE_NAME_STAGE: san-martin-notification-service-stage
+
+  TAG_LATEST: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:latest
+  TAG_COMMIT: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:$CI_COMMIT_SHORT_SHA
+
+  TAG_EMAIL_SERVICE_LATEST: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:email-service-latest
+  TAG_EMAIL_SERVICE_COMMIT: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:email-service-$CI_COMMIT_SHORT_SHA
+
+  TAG_SMS_SERVICE_LATEST: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:sms-service-latest
+  TAG_SMS_SERVICE_COMMIT: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:sms-service-$CI_COMMIT_SHORT_SHA
+
+  TAG_CATEGORY_PARSING_SERVICE_LATEST: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:category-parsing-service-latest
+  TAG_CATEGORY_PARSING_SERVICE_COMMIT: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:category-parsing-service-$CI_COMMIT_SHORT_SHA
+
+  TAG_NOTIFICATION_SERVICE_LATEST: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:notification-service-latest
+  TAG_NOTIFICATION_SERVICE_COMMIT: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:notification-service-$CI_COMMIT_SHORT_SHA
+
+  TAG_MIGRATION_LATEST: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:migration-latest
+  TAG_MIGRATION_COMMIT: 178431145339.dkr.ecr.us-east-1.amazonaws.com/san-martin/back-end:migration-$CI_COMMIT_SHORT_SHA
+
+migration_stage:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [ "" ]
+  stage: migration
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "$STAGE_ENV" > .env
+    - docker build -t $TAG_MIGRATION_COMMIT -t $TAG_MIGRATION_LATEST --target migration .
+    - echo "y" | docker system prune --all
+  tags:
+    - stage-back-end
+  only:
+    - master
+
+migration_dev:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [ "" ]
+  stage: migration
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "$DEV_ENV" > .env
+    - docker build -t $TAG_MIGRATION_COMMIT -t $TAG_MIGRATION_LATEST --target migration .
+    - echo "y" | docker system prune --all
+  tags:
+    - stage-back-end
+  only:
+    - development
+
+tests:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [ "" ]
+  stage: tests
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "$TEST_ENV" > .env
+    - docker build -t nestjs-api:test --target test .
+    - docker run nestjs-api:test sh -c 'npm run test'
+    - echo "y" | docker system prune --all
+  tags:
+    - stage-back-end
+  only:
+    - development
+    - master
+
+## Stage server
+publish_microservices_stage:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [ "" ]
+  stage: publish_microservices
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "$STAGE_ENV" > .env
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker build -t $TAG_EMAIL_SERVICE_COMMIT -t $TAG_EMAIL_SERVICE_LATEST --target production_email_service .
+    - docker build -t $TAG_SMS_SERVICE_COMMIT -t $TAG_SMS_SERVICE_LATEST --target production_sms_service .
+    - docker build -t $TAG_CATEGORY_PARSING_SERVICE_COMMIT -t $TAG_CATEGORY_PARSING_SERVICE_LATEST --target catalog_parsing_service .
+    - docker build -t $TAG_NOTIFICATION_SERVICE_COMMIT -t $TAG_NOTIFICATION_SERVICE_LATEST --target notification_service .
+    - docker push $TAG_EMAIL_SERVICE_LATEST
+    - docker push $TAG_EMAIL_SERVICE_COMMIT
+    - docker push $TAG_SMS_SERVICE_LATEST
+    - docker push $TAG_SMS_SERVICE_COMMIT
+    - docker push $TAG_CATEGORY_PARSING_SERVICE_LATEST
+    - docker push $TAG_CATEGORY_PARSING_SERVICE_COMMIT
+    - docker push $TAG_NOTIFICATION_SERVICE_LATEST
+    - docker push $TAG_NOTIFICATION_SERVICE_COMMIT
+    - echo "y" | docker system prune --all
+  tags:
+    - stage-back-end
+  only:
+    - master
+
+deploy_email_service_stage:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_EMAIL_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $EMAIL_SERVICE_NAME_STAGE || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $EMAIL_SERVICE_NAME_STAGE $TAG_EMAIL_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - master
+
+deploy_sms_service_stage:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_SMS_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $SMS_SERVICE_NAME_STAGE || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $SMS_SERVICE_NAME_STAGE $TAG_SMS_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - master
+
+deploy_category_parsing_service_stage:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_CATEGORY_PARSING_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $CATEGORY_PARSING_SERVICE_STAGE || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $CATEGORY_PARSING_SERVICE_STAGE --publish 19002:3000 $TAG_CATEGORY_PARSING_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - master
+
+deploy_notification_service_stage:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_NOTIFICATION_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $NOTIFICATION_SERVICE_NAME_STAGE || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $NOTIFICATION_SERVICE_NAME_STAGE $TAG_NOTIFICATION_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - master
+
+publish_api_stage:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [ "" ]
+  stage: publish_api
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "$STAGE_ENV" > .env
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker build -t $TAG_COMMIT -t $TAG_LATEST --target production_api .
+    - docker push $TAG_LATEST
+    - docker push $TAG_COMMIT
+    - echo "y" | docker system prune --all
+  tags:
+    - stage-back-end
+  only:
+    - master
+
+deploy_api_stage:
+  image: alpine:latest
+  stage: deploy_api
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $APP_NAME_STAGE || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $APP_NAME_STAGE --publish 3000:3000 $TAG_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - master
+
+## Dev server
+publish_microservices_dev:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [ "" ]
+  stage: publish_microservices
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "$DEV_ENV" > .env
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker build -t $TAG_EMAIL_SERVICE_COMMIT -t $TAG_EMAIL_SERVICE_LATEST --target production_email_service .
+    - docker build -t $TAG_SMS_SERVICE_COMMIT -t $TAG_SMS_SERVICE_LATEST --target production_sms_service .
+    - docker build -t $TAG_CATEGORY_PARSING_SERVICE_COMMIT -t $TAG_CATEGORY_PARSING_SERVICE_LATEST --target catalog_parsing_service .
+    - docker build -t $TAG_NOTIFICATION_SERVICE_COMMIT -t $TAG_NOTIFICATION_SERVICE_LATEST --target notification_service .
+    - docker push $TAG_EMAIL_SERVICE_LATEST
+    - docker push $TAG_EMAIL_SERVICE_COMMIT
+    - docker push $TAG_SMS_SERVICE_LATEST
+    - docker push $TAG_SMS_SERVICE_COMMIT
+    - docker push $TAG_CATEGORY_PARSING_SERVICE_LATEST
+    - docker push $TAG_CATEGORY_PARSING_SERVICE_COMMIT
+    - docker push $TAG_NOTIFICATION_SERVICE_LATEST
+    - docker push $TAG_NOTIFICATION_SERVICE_COMMIT
+    - echo "y" | docker system prune --all
+  tags:
+    - stage-back-end
+  only:
+    - development
+
+deploy_email_service_dev:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_EMAIL_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $EMAIL_SERVICE_NAME || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $EMAIL_SERVICE_NAME $TAG_EMAIL_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - development
+
+deploy_sms_service_dev:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_SMS_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $SMS_SERVICE_NAME || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $SMS_SERVICE_NAME $TAG_SMS_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - development
+
+deploy_category_parsing_service_dev:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_CATEGORY_PARSING_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $CATEGORY_PARSING_SERVICE_NAME || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $CATEGORY_PARSING_SERVICE_NAME --publish 19001:3000 $TAG_CATEGORY_PARSING_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - development
+
+deploy_notification_service_dev:
+  image: alpine:latest
+  stage: deploy_microservices
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_NOTIFICATION_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $NOTIFICATION_SERVICE_NAME || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $NOTIFICATION_SERVICE_NAME $TAG_NOTIFICATION_SERVICE_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - development
+
+publish_api_dev:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [ "" ]
+  stage: publish_api
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - echo "$DEV_ENV" > .env
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker build -t $TAG_COMMIT -t $TAG_LATEST --target production_api .
+    - docker push $TAG_LATEST
+    - docker push $TAG_COMMIT
+    - echo "y" | docker system prune --all
+  tags:
+    - stage-back-end
+  only:
+    - development
+
+deploy_api_dev:
+  image: alpine:latest
+  stage: deploy_api
+  tags:
+    - stage-back-end
+  script:
+    - chmod og= $ID_RSA_STAGE
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker pull $TAG_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service rm $APP_NAME || true"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "docker service create --replicas 1 --name $APP_NAME --publish 3001:3000 $TAG_COMMIT"
+    - ssh -i $ID_RSA_STAGE -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP_STAGE "echo "y" | docker system prune --all"
+  only:
+    - development

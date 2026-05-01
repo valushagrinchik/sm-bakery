@@ -1,0 +1,13 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "^san-martin/san-martin-libs(|/.*)$": "<rootDir>/../../../libs/san-martin-libs/src/$1",
+    "@san-martin/san-martin-libs": "<rootDir>/../../../libs/san-martin-libs/src"
+  }
+}
