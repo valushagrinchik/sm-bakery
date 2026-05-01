@@ -6,7 +6,7 @@ import { DeliveryZonesService } from './delivery-zones.service';
 import { ValidateDeliveryZoneDto } from './dto/request/validate-delivery-zone.dto';
 
 @Controller(RouteName.DELIVERY_ZONES)
-@ApiTags(RouteName.DELIVERY_ZONES)
+@ApiTags('Delivery Zones')
 @ApiBearerAuth()
 @Controller('delivery-zones')
 export class DeliveryZonesController {

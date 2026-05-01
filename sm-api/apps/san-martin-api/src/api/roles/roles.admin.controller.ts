@@ -6,7 +6,7 @@ import { RolesFindManyQueryDto } from './dto/request/roles-find-many-query.dto';
 import { RolesFindManyResponseDto } from './dto/response/roles-find-many.response.dto';
 import { RolesService } from './roles.service';
 
-@ApiTags(RouteName.ROLES)
+@ApiTags('Roles')
 @ApiBearerAuth()
 @UseGuards(AdmitPanelGuard)
 @Controller(RouteName.ADMIN_ROLES)

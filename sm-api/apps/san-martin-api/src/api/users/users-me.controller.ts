@@ -31,7 +31,7 @@ import { UsersMeUpdateDto } from './dto/request/users-me-update.dto';
 import { UserResponseDto } from './dto/response/user.response.dto';
 import { UsersService } from './users.service';
 
-@ApiTags(RouteName.USERS)
+@ApiTags('Users')
 @ApiBearerAuth()
 @Controller(RouteName.USERS_ME)
 export class UsersMeController {

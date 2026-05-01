@@ -34,7 +34,7 @@ import { FindManyUsersResponseDto } from './dto/response/find-many-users.respons
 import { UserResponseDto } from './dto/response/user.response.dto';
 import { UsersService } from './users.service';
 
-@ApiTags(RouteName.USERS)
+@ApiTags('Users')
 @ApiBearerAuth()
 @UseGuards(AdmitPanelGuard)
 @Controller(RouteName.ADMIN_USERS)

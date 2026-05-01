@@ -6,7 +6,7 @@ import { Request } from 'express';
 import { GuestService } from './guest.service';
 
 @Controller(RouteName.GUEST)
-@ApiTags(RouteName.GUEST)
+@ApiTags('Guest')
 export class GuestController {
   constructor(private guestService: GuestService) {}
 

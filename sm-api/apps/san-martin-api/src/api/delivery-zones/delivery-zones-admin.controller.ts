@@ -42,7 +42,7 @@ import { DeliveryZoneFindManyResponseDto } from './dto/response/delivery-zone-fi
 import { DeliveryZoneResponseDto } from './dto/response/delivery-zone.response.dto';
 
 @Controller(RouteName.ADMIN_DELIVERY_ZONES)
-@ApiTags(RouteName.DELIVERY_ZONES)
+@ApiTags('Delivery Zones')
 @UseGuards(AdmitPanelGuard)
 @ApiBearerAuth()
 @UseGuards(AdmitPanelGuard)

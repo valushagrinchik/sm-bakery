@@ -7,6 +7,7 @@ import { AuthMiddleware } from './auth/middleware/auth-middleware';
 import { CountriesModule } from './countries/countries.module';
 import { DeliveryZonesModule } from './delivery-zones/delivery-zones.module';
 import { GuestModule } from './guest/guest.module';
+import { HealthModule } from './health/health.module';
 import { RolesModule } from './roles/roles.module';
 import { StoresModule } from './stores/stores.module';
 import { UsersModule } from './users/users.module';
@@ -22,6 +23,7 @@ import { UsersNotificationsModule } from './users-notifications/users-notificati
         secret: appConfigService.jwtSecret,
       }),
     }),
+    HealthModule,
     RolesModule,
     AuthModule,
     UsersModule,
@@ -41,6 +43,7 @@ import { UsersNotificationsModule } from './users-notifications/users-notificati
         secret: appConfigService.jwtSecret,
       }),
     }),
+    HealthModule,
     RolesModule,
     AuthModule,
     UsersModule,
@@ -73,6 +76,10 @@ export class ApiModule implements NestModule {
         { path: 'v2/versions/:os', method: RequestMethod.GET },
         { path: 'v2/users/reset-change', method: RequestMethod.GET },
         { path: 'v2/guest/token', method: RequestMethod.GET },
+        { path: 'v2/health', method: RequestMethod.GET },
+        { path: 'v2/health/detailed', method: RequestMethod.GET },
+        { path: 'v2/health/readiness', method: RequestMethod.GET },
+        { path: 'v2/health/liveness', method: RequestMethod.GET },
       )
       .forRoutes('/');
   }

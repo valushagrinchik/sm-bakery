@@ -29,7 +29,7 @@ import { FindManyCountriesResponseDto } from './dto/response/find-many-countries
 @Controller(RouteName.ADMIN_COUNTRIES)
 @ApiBearerAuth()
 @UseGuards(AdmitPanelGuard)
-@ApiTags(RouteName.COUNTRIES)
+@ApiTags('Countries')
 export class CountriesAdminController {
   constructor(private readonly service: CountriesService) {}
 

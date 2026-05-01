@@ -16,7 +16,7 @@ import { NotificationResponseDto } from './dto/response/notification.response.dt
 import { UsersNotificationsService } from './users-notifications.service';
 
 @Controller(RouteName.USERS_NOTIFICATIONS)
-@ApiTags(RouteName.USERS)
+@ApiTags('Notifications')
 @ApiBearerAuth()
 export class UsersNotificationsController {
   constructor(private service: UsersNotificationsService) {}

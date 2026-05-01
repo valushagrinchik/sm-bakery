@@ -15,7 +15,7 @@ import { ResetChangeQueryDto } from './dto/request/reset-change.query.dto';
 import { UserImageResponseDto } from './dto/user-image.response.dto';
 import { UsersService } from './users.service';
 
-@ApiTags(RouteName.USERS)
+@ApiTags('Users')
 @Controller(RouteName.USERS)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

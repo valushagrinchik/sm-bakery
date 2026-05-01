@@ -30,7 +30,7 @@ import { UsersMeAddressFindManyResponseDto } from './dto/response/users-me-addre
 import { UsersAddressService } from './users-address.service';
 
 @Controller(RouteName.USERS_ME_ADDRESS)
-@ApiTags(RouteName.USERS)
+@ApiTags('Users')
 @ApiBearerAuth()
 export class UsersMeAddressController {
   constructor(private readonly usersAddressService: UsersAddressService) {}

@@ -26,11 +26,11 @@ import {
   VerifyResetPasswordCodeDto,
 } from './dto';
 
+@ApiTags('Authentication')
 @Controller(RouteName.AUTH)
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @ApiTags(RouteName.AUTH)
   @ApiParam({ type: String, name: 'email' })
   @ApiOkResponse({
     status: HttpStatus.OK,
@@ -44,7 +44,6 @@ export class AuthController {
     await this.authService.checkingUserExistence(params);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiOkResponse({
     status: HttpStatus.CREATED,
     type: JwtTokenDto,
@@ -63,7 +62,6 @@ export class AuthController {
     return this.authService.userSignIn(transaction, platform, dto);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiOkResponse({
     status: HttpStatus.CREATED,
     type: JwtTokenDto,
@@ -77,7 +75,6 @@ export class AuthController {
     return this.authService.userRefreshToken(dto);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiOkResponse({
     status: HttpStatus.CREATED,
   })
@@ -94,7 +91,6 @@ export class AuthController {
     await this.authService.customerSignUp(transaction, dto);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiOkResponse({
     status: HttpStatus.CREATED,
   })
@@ -111,7 +107,6 @@ export class AuthController {
     await this.authService.verifyEmail(transaction, dto);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiParam({ type: String, name: 'email' })
   @ApiOkResponse({
     status: HttpStatus.CREATED,
@@ -125,7 +120,6 @@ export class AuthController {
     await this.authService.resendVerifyCode(params);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiParam({ type: String, name: 'email' })
   @ApiOkResponse({
     status: HttpStatus.CREATED,
@@ -143,7 +137,6 @@ export class AuthController {
     await this.authService.sendResetPasswordCode(transaction, params);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiOkResponse({
     status: HttpStatus.CREATED,
   })
@@ -156,7 +149,6 @@ export class AuthController {
     await this.authService.verifyResetPasswordCode(dto);
   }
 
-  @ApiTags(RouteName.AUTH)
   @ApiOkResponse({
     status: HttpStatus.CREATED,
     type: UsersEntity,
@@ -174,7 +166,6 @@ export class AuthController {
     await this.authService.resetPassword(transaction, dto);
   }
 
-  @ApiTags(RouteName.SOCIAL_AUTH)
   @ApiOperation({
     summary: 'Social media registration',
   })
@@ -194,7 +185,6 @@ export class AuthController {
     return this.authService.socialCheckingExistence(transaction, dto);
   }
 
-  @ApiTags(RouteName.SOCIAL_AUTH)
   @ApiOperation({
     summary: 'Social media authorization',
     description:
@@ -218,7 +208,6 @@ export class AuthController {
     return this.authService.customerSocialSignIn(transaction, platform, dto);
   }
 
-  @ApiTags(RouteName.SOCIAL_AUTH)
   @ApiOperation({
     summary: 'Social media registration',
     description:

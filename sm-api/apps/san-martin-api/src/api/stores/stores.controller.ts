@@ -42,7 +42,7 @@ import { StoresService } from './stores.service';
 @Controller(RouteName.ADMIN_STORES)
 @ApiBearerAuth()
 @UseGuards(AdmitPanelGuard)
-@ApiTags(RouteName.STORES)
+@ApiTags('Stores')
 export class StoresController {
   constructor(private storeService: StoresService) {}
 
